@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">qhkarimeh</string>
+    <string name="internet">Network not available</string>
+    <string name="net"> please check your connection…</string>
+    <string name="varqa">qhkarimeh</string>
+    <string name="powered">Powered by qhkarimeh</string>
+    <string name="hi">Hi!</string>
+    <string name="wellcom">wellcom</string>
+    <string name="refresh">Refresh</string>
 </resources>
