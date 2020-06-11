@@ -39,6 +39,12 @@ public class SplashScreenActivity extends AppCompatActivity {
             Refresh();
         } else {
 //            checkSplash();
+            new Handler().postDelayed((Runnable) () -> {
+                Intent intent;
+                intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }, 3000);
         }
     }
 //    void checkSplash(){
