@@ -8,6 +8,8 @@ import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 public class SplashScreenActivity extends AppCompatActivity {
     private SliderPrefManager prefMan;
     @Override
@@ -29,10 +31,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         //For 3G check
         ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        boolean is3g = manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
+        boolean is3g = Objects.requireNonNull(manager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE))
                 .isConnectedOrConnecting();
         //For WiFi Check
-        boolean isWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
+        boolean isWifi = Objects.requireNonNull(manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI))
                 .isConnectedOrConnecting();
         System.out.println(is3g + " net " + isWifi);
         if (!is3g && !isWifi){
