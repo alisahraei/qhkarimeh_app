@@ -38,26 +38,7 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/logotext"
             android:id="@+id/logotext"/>
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/varqa"-->
-<!--            android:textColor="#ffffff"-->
-<!--            android:textSize="20sp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:textStyle="bold"-->
-<!--            android:gravity="center"-->
-<!--            android:layout_marginTop="10dp"/>-->
+
     </LinearLayout>
-<!--    <TextView-->
-<!--        android:id="@+id/version"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginBottom="20dp"-->
-<!--        android:text="@string/powered"-->
-<!--        android:textColor="#ffffff"-->
-<!--        android:textSize="15sp" />-->
 
 </RelativeLayout>
