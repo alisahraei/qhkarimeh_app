@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
-    @SuppressLint("JavascriptInterface")
+    @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
         webSetting.setJavaScriptEnabled(true);
@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         webSetting.setAllowFileAccess(true);
         webSetting.setAllowContentAccess(true);
         webSetting.setBuiltInZoomControls(true);
-        webSetting.setPluginState(WebSettings.PluginState.ON);
         webView.setScrollbarFadingEnabled(false);
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollBarEnabled(false);
