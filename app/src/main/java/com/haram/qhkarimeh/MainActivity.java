@@ -8,12 +8,13 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     WebView webView;
-    ProgressBar progressBar;
+    LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
     boolean doubleBackToExitPressedOnce = false;
     @Override
@@ -21,15 +22,30 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         webView = findViewById(R.id.webview);
-        progressBar = findViewById(R.id.pg);
+        linearLayout = findViewById(R.id.pgdata);
         webView.loadUrl(url);
-        webView.setWebViewClient(new WebViewClient());
         websetting();
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
+        load();
     }
+    public void load(){
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                webView.setVisibility(View.GONE);
+                linearLayout.setVisibility(View.VISIBLE);
+                return true;
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                linearLayout.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
+            }
+        });
+    };
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
@@ -56,25 +72,6 @@ public class MainActivity extends AppCompatActivity {
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
-    }
-    public class AppWebViewClients extends WebViewClient {
-        private ProgressBar progressBar;
-
-        public AppWebViewClients(ProgressBar progressBar) {
-            this.progressBar=progressBar;
-            progressBar.setVisibility(View.VISIBLE);
-        }
-        @Override
-        public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            view.loadUrl(url);
-            return true;
-        }
-
-        @Override
-        public void onPageFinished(WebView view, String url) {
-            super.onPageFinished(view, url);
-            progressBar.setVisibility(View.GONE);
-        }
     }
     @Override
     public void onBackPressed() {
