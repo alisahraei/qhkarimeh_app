@@ -4,4 +4,5 @@
     <string name="net"> لطفا اتصال به شبکه خود را بررسی کنید</string>
     <string name="refresh">به روز رسانی</string>
     <string name="backMsg">برای خروج یک بار دیگر کلید بازگشت را بفشارید</string>
+    <string name="version">version 1</string>
 </resources>
