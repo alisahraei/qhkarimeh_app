@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         webSetting.setLoadWithOverviewMode(true);
         webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
         webSetting.setSupportZoom(false);
-        webSetting.setSavePassword(false);
+        webSetting.setSavePassword(true);
         webSetting.setBlockNetworkImage(false);
         webSetting.setSupportMultipleWindows(false);
         webSetting.setAppCacheEnabled(true);
