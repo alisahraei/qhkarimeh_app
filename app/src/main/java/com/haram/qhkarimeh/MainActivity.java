@@ -23,45 +23,45 @@ import im.delight.android.webview.AdvancedWebView;
 
 public class MainActivity extends AppCompatActivity {
     private AdvancedWebView webView;
-    LinearLayout linearLayout;
+//    LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
 
-    IUpdateCheckService service;
-    UpdateServiceConnection connection;
-    private static final String TAG = "UpdateCheck";
+//    IUpdateCheckService service;
+//    UpdateServiceConnection connection;
+//    private static final String TAG = "UpdateCheck";
 
     boolean doubleBackToExitPressedOnce = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initService();
+//        initService();
 
         setContentView(R.layout.activity_main);
         webView = findViewById(R.id.webview);
-        linearLayout = findViewById(R.id.pgdata);
+//        linearLayout = findViewById(R.id.pgdata);
         webView.loadUrl(url);
         websetting();
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        load();
+//        load();
     }
-    public void load(){
-        webView.setWebViewClient(new WebViewClient(){
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                webView.setVisibility(View.GONE);
-                linearLayout.setVisibility(View.VISIBLE);
-                return true;
-            }
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                linearLayout.setVisibility(View.GONE);
-                webView.setVisibility(View.VISIBLE);
-            }
-        });
-    };
+//    public void load(){
+//        webView.setWebViewClient(new WebViewClient(){
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                webView.setVisibility(View.GONE);
+//                linearLayout.setVisibility(View.VISIBLE);
+//                return true;
+//            }
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                linearLayout.setVisibility(View.GONE);
+//                webView.setVisibility(View.VISIBLE);
+//            }
+//        });
+//    };
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
         webSetting.setAllowFileAccess(true);
         webSetting.setAllowContentAccess(true);
         webSetting.setBuiltInZoomControls(true);
+        webSetting.setUseWideViewPort(true);
         webView.setScrollbarFadingEnabled(false);
         webView.setHorizontalScrollBarEnabled(false);
         webView.setVerticalScrollBarEnabled(false);
@@ -88,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
+
+
     }
     @Override
     public void onBackPressed() {
@@ -105,46 +108,46 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    class UpdateServiceConnection implements ServiceConnection {
-        public void onServiceConnected(ComponentName name, IBinder boundService) {
-            service = (IUpdateCheckService) INotificationSideChannel.Stub
-                    .asInterface((IBinder) boundService);
-            try {
-                long vCode = service.getVersionCode("com.haram.qhkarimeh");
-                Toast.makeText(MainActivity.this, "Version Code:" + vCode,
-                        Toast.LENGTH_LONG).show();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Log.d(TAG, "onServiceConnected(): Connected");
-        }
-
-        public void onServiceDisconnected(ComponentName name) {
-            service = null;
-            Log.d(TAG, "onServiceDisconnected(): Disconnected");
-        }
-    }
-
-    private void initService() {
-        Log.i(TAG, "initService()");
-        connection = new UpdateServiceConnection();
-        Intent i = new Intent(
-                "com.farsitel.bazaar.service.UpdateCheckService.BIND");
-        i.setPackage("com.farsitel.bazaar");
-        boolean ret = bindService(i, connection, Context.BIND_AUTO_CREATE);
-        Log.d(TAG, "initService() bound value: " + ret);
-    }
-
-    /** This is our function to un-binds this activity from our service. */
-    private void releaseService() {
-        unbindService(connection);
-        connection = null;
-        Log.d(TAG, "releaseService(): unbound.");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        releaseService();
-    }
+//    class UpdateServiceConnection implements ServiceConnection {
+//        public void onServiceConnected(ComponentName name, IBinder boundService) {
+//            service = (IUpdateCheckService) INotificationSideChannel.Stub
+//                    .asInterface((IBinder) boundService);
+//            try {
+//                long vCode = service.getVersionCode("com.haram.qhkarimeh");
+//                Toast.makeText(MainActivity.this, "Version Code:" + vCode,
+//                        Toast.LENGTH_LONG).show();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//            Log.d(TAG, "onServiceConnected(): Connected");
+//        }
+//
+//        public void onServiceDisconnected(ComponentName name) {
+//            service = null;
+//            Log.d(TAG, "onServiceDisconnected(): Disconnected");
+//        }
+//    }
+//
+//    private void initService() {
+//        Log.i(TAG, "initService()");
+//        connection = new UpdateServiceConnection();
+//        Intent i = new Intent(
+//                "com.farsitel.bazaar.service.UpdateCheckService.BIND");
+//        i.setPackage("com.farsitel.bazaar");
+//        boolean ret = bindService(i, connection, Context.BIND_AUTO_CREATE);
+//        Log.d(TAG, "initService() bound value: " + ret);
+//    }
+//
+//    /** This is our function to un-binds this activity from our service. */
+//    private void releaseService() {
+//        unbindService(connection);
+//        connection = null;
+//        Log.d(TAG, "releaseService(): unbound.");
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        releaseService();
+//    }
 }
