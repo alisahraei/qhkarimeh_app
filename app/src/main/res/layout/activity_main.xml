@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.haram.qhkarimeh.MainActivity"
     android:orientation="horizontal">
-    <WebView
+    <im.delight.android.webview.AdvancedWebView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:id="@+id/webview"/>
