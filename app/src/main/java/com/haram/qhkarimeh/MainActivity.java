@@ -3,14 +3,18 @@ package com.haram.qhkarimeh;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -19,13 +23,15 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import java.util.Objects;
+
 import im.delight.android.webview.AdvancedWebView;
 
 public class MainActivity extends AppCompatActivity {
     private AdvancedWebView webView;
 //    LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
-
+    ProgressDialog progress;
 //    IUpdateCheckService service;
 //    UpdateServiceConnection connection;
 //    private static final String TAG = "UpdateCheck";
@@ -44,24 +50,27 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-//        load();
+        load();
     }
-//    public void load(){
-//        webView.setWebViewClient(new WebViewClient(){
-//            @Override
-//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-//                webView.setVisibility(View.GONE);
-//                linearLayout.setVisibility(View.VISIBLE);
-//                return true;
-//            }
-//            @Override
-//            public void onPageFinished(WebView view, String url) {
-//                super.onPageFinished(view, url);
-//                linearLayout.setVisibility(View.GONE);
-//                webView.setVisibility(View.VISIBLE);
-//            }
-//        });
-//    };
+    public void load(){
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+            @Override
+            public void onPageStarted(WebView view, String url, Bitmap facIcon) {
+                //SHOW LOADING IF IT ISNT ALREADY VISIBLE
+                progress = ProgressDialog.show(MainActivity.this, getResources().getString(R.string.titlepg), getResources().getString(R.string.loading), true);
+                progress.setCanceledOnTouchOutside(false);
+            }
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                progress.dismiss();
+            }
+        });
+    };
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
