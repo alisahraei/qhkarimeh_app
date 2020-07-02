@@ -34,7 +34,9 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
     private AdvancedWebView webView;
 //    LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
-    ProgressDialog progress;
+    ProgressDialog progress;//is down...must be change
+
+
 //    IUpdateCheckService service;
 //    UpdateServiceConnection connection;
 //    private static final String TAG = "UpdateCheck";
