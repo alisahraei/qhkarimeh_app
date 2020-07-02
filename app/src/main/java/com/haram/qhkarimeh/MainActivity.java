@@ -10,12 +10,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -27,7 +29,8 @@ import java.util.Objects;
 
 import im.delight.android.webview.AdvancedWebView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity //implements AdvancedWebView.Listener
+         {
     private AdvancedWebView webView;
 //    LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
@@ -114,7 +117,38 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.backMsg, Toast.LENGTH_SHORT).show();
         }
     }
-
+//    private boolean isNetworkConnected() {
+//        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+//        if (cm != null) {
+//            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+//        }
+//        return false;
+//    }
+//
+//    @Override
+//    public void onPageStarted(String url, Bitmap favicon) {
+//
+//    }
+//
+//    @Override
+//    public void onPageFinished(String url) {
+//
+//    }
+//
+//    @Override
+//    public void onPageError(int errorCode, String description, String failingUrl) {
+//
+//    }
+//
+//    @Override
+//    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
+//
+//    }
+//
+//    @Override
+//    public void onExternalPageRequest(String url) {
+//
+//    }
 
 
 //    class UpdateServiceConnection implements ServiceConnection {
