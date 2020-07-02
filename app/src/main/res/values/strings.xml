@@ -6,4 +6,5 @@
     <string name="backMsg">برای خروج دوباره کلید بازگشت را بفشارید</string>
     <string name="version">نسخه ۱</string>
     <string name="loading">در حال بارگذاری…</string>
+    <string name="titlepg">لطفا منتظر بمانید</string>
 </resources>
