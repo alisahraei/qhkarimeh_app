@@ -3,40 +3,27 @@ package com.haram.qhkarimeh;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.app.ProgressDialog;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.graphics.Bitmap;
-import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.os.IBinder;
-import android.support.v4.app.INotificationSideChannel;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.Objects;
 
 import im.delight.android.webview.AdvancedWebView;
 
 public class MainActivity extends AppCompatActivity //implements AdvancedWebView.Listener
          {
     private AdvancedWebView webView;
-//    LinearLayout linearLayout;
+    LinearLayout linearLayout;
+    ProgressBar progressBar;
+    TextView textView;
     String url = "https://qhkarimeh.ir/";
-    ProgressDialog progress;//is down...must be change
-
-
 //    IUpdateCheckService service;
 //    UpdateServiceConnection connection;
 //    private static final String TAG = "UpdateCheck";
