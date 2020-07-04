@@ -21,13 +21,27 @@
         android:background="@drawable/radius"
         android:elevation="5dp"
         tools:ignore="UnusedAttribute">
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/loading"
-            android:paddingStart="10dp"
-            android:id="@+id/tvLoad"
-            tools:ignore="RtlSymmetry" />
+            android:orientation="vertical"
+            android:textDirection="rtl">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/wait"
+                android:id="@+id/tvWait"
+                android:textStyle="bold"
+                android:paddingStart="10dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/loading"
+                android:paddingStart="10dp"
+                android:id="@+id/tvLoad"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
         <ProgressBar
 
             android:layout_width="wrap_content"
