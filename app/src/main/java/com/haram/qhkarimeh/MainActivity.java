@@ -2,15 +2,15 @@ package com.haram.qhkarimeh;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 import im.delight.android.webview.AdvancedWebView;
 
@@ -18,8 +18,6 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
          {
     private AdvancedWebView webView;
     LinearLayout linearLayout;
-    ProgressBar progressBar;
-    TextView textView;
     String url = "https://qhkarimeh.ir/";
     boolean doubleBackToExitPressedOnce = false;
     //    IUpdateCheckService service;
@@ -30,16 +28,27 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        initService();
-
         setContentView(R.layout.activity_main);
-        webView = findViewById(R.id.webview);
-        linearLayout = findViewById(R.id.pgData);
-        webView.loadUrl(url);
+        findID();
         websetting();
+        webView.loadUrl(url);
+        load();
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        load();
+        if (!isNetworkConnected()) {
+            bottomsheet();
+        }
+    }
+
+    public void  findID(){
+        webView = findViewById(R.id.webview);
+        linearLayout = findViewById(R.id.pgData);
+    }
+
+    public void bottomsheet () {
+        SplashScreenActivity.getInstance().haveNetwork();
+        SplashScreenActivity.getInstance().Refresh();
     }
 
     public void load(){
@@ -86,7 +95,6 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         webView.addJavascriptInterface(this, "jsinterface");
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
-        webView.setScrollbarFadingEnabled(false);
     }
 
     @Override
@@ -103,13 +111,14 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         }
     }
 
-//    private boolean isNetworkConnected() {
-//        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-//        if (cm != null) {
-//            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
-//        }
-//        return false;
-//    }
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        if (cm != null) {
+            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+        }
+        return false;
+    }
+
 //
 //    @Override
 //    public void onPageStarted(String url, Bitmap favicon) {
