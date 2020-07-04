@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
 
         setContentView(R.layout.activity_main);
         webView = findViewById(R.id.webview);
-//        linearLayout = findViewById(R.id.pgdata);
+        linearLayout = findViewById(R.id.pgData);
         webView.loadUrl(url);
         websetting();
         if (getSupportActionBar() != null){
@@ -53,13 +53,14 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
             }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap facIcon) {
-                //SHOW LOADING IF IT ISNT ALREADY VISIBLE
-                progress = ProgressDialog.show(MainActivity.this, getResources().getString(R.string.titlepg), getResources().getString(R.string.loading), true);
-                progress.setCanceledOnTouchOutside(false);
+                linearLayout.setVisibility(View.VISIBLE);
+                webView.setVisibility(View.GONE);
+
             }
             @Override
             public void onPageFinished(WebView view, String url) {
-                progress.dismiss();
+                linearLayout.setVisibility(View.GONE);
+                webView.setVisibility(View.VISIBLE);
             }
         });
     };

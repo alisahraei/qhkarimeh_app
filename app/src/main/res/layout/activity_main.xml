@@ -10,32 +10,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/webview"/>
-<!--    <LinearLayout-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_centerInParent="true"-->
-<!--        android:gravity="center"-->
-<!--        android:id="@+id/pgdata"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:background="@drawable/radius"-->
-<!--        android:elevation="5dp"-->
-<!--        tools:ignore="UnusedAttribute">-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="@string/loading"-->
-<!--            android:paddingStart="10dp"-->
-<!--            android:id="@+id/tvLoad"-->
-<!--            tools:ignore="RtlSymmetry" />-->
-<!--        <ProgressBar-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:id="@+id/pgData"
+        android:orientation="horizontal"
+        android:background="@drawable/radius"
+        android:elevation="5dp"
+        tools:ignore="UnusedAttribute">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loading"
+            android:paddingStart="10dp"
+            android:id="@+id/tvLoad"
+            tools:ignore="RtlSymmetry" />
+        <ProgressBar
 
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/pg"-->
-<!--            android:theme="@android:style/Animation"-->
-<!--            android:visibility="visible"-->
-<!--            android:padding="10dp"-->
-<!--            />-->
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/pg"
+            android:theme="@android:style/Animation"
+            android:visibility="visible"
+            android:padding="10dp"
+            />
 
-<!--    </LinearLayout>-->
+    </LinearLayout>
 </RelativeLayout>
