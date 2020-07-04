@@ -54,16 +54,14 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
             @Override
             public void onPageStarted(WebView view, String url, Bitmap facIcon) {
                 linearLayout.setVisibility(View.VISIBLE);
-                webView.setVisibility(View.GONE);
-
             }
             @Override
             public void onPageFinished(WebView view, String url) {
                 linearLayout.setVisibility(View.GONE);
-                webView.setVisibility(View.VISIBLE);
             }
         });
     };
+
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
