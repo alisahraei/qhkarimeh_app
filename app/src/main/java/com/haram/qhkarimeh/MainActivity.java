@@ -1,7 +1,6 @@
 package com.haram.qhkarimeh;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -13,8 +12,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
-
 import im.delight.android.webview.AdvancedWebView;
 
 public class MainActivity extends AppCompatActivity //implements AdvancedWebView.Listener
@@ -24,11 +21,11 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
     ProgressBar progressBar;
     TextView textView;
     String url = "https://qhkarimeh.ir/";
-//    IUpdateCheckService service;
-//    UpdateServiceConnection connection;
-//    private static final String TAG = "UpdateCheck";
-
     boolean doubleBackToExitPressedOnce = false;
+    //    IUpdateCheckService service;
+    //    UpdateServiceConnection connection;
+    //    private static final String TAG = "UpdateCheck";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +41,7 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         }
         load();
     }
+
     public void load(){
         webView.setWebViewClient(new WebViewClient(){
             @Override
@@ -89,9 +87,8 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
         webView.setScrollbarFadingEnabled(false);
-
-
     }
+
     @Override
     public void onBackPressed() {
         if (webView.canGoBack()) {
@@ -105,6 +102,7 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
             Toast.makeText(this, R.string.backMsg, Toast.LENGTH_SHORT).show();
         }
     }
+
 //    private boolean isNetworkConnected() {
 //        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 //        if (cm != null) {
