@@ -56,8 +56,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
     }
 
-
-
     public void Refresh() {
         BottomSheetFragment bottomSheetDialog = BottomSheetFragment.newInstance();
         bottomSheetDialog.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
