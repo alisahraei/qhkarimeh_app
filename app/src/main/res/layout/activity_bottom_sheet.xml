@@ -17,8 +17,8 @@
         android:orientation="horizontal"
         android:layout_gravity="center">
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
             app:lottie_autoPlay="true"
             app:lottie_fileName="connection2.json"
             app:lottie_loop="true"
