@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
+                if (!isNetworkConnected()){
+                    showBottomSheetDialogFragment();
+                }
                 return true;
             }
             @Override
@@ -119,6 +122,18 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         return false;
     }
 
+    public void showBottomSheetDialogFragment() {
+        BottomSheetFragment bottomSheetDialog = BottomSheetFragment.newInstance();
+        bottomSheetDialog.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+        BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
+        bottomSheetFragment.setCancelable(false);
+        bottomSheetFragment.setListener(() -> {
+            bottomSheetFragment.dismiss();
+            finish();
+            startActivity(getIntent());
+        });
+        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+    }
 //
 //    @Override
 //    public void onPageStarted(String url, Bitmap favicon) {
