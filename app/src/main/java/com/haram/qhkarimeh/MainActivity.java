@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         if (!isNetworkConnected()) {
+            Toast.makeText(this, "if!isnetwork", Toast.LENGTH_SHORT).show();
             bottomsheet();
         }
     }
@@ -129,18 +130,23 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
         NetworkInfo activeNetworkInfo =
                 Objects.requireNonNull(cm).getActiveNetworkInfo();
         if (activeNetworkInfo!=null && activeNetworkInfo.isConnected()){
+            Toast.makeText(this, "if", Toast.LENGTH_SHORT).show();
             isOnline();
         }else {
+            Toast.makeText(this, "else", Toast.LENGTH_SHORT).show();
         }
 
         new Handler().postDelayed(() -> {
             CheckInternetUtil.Listener listener = null;
             if (i){
                 listener.onReceived(true);
+                Toast.makeText(this, "listener true", Toast.LENGTH_SHORT).show();
             }else {
                 listener.onReceived(false);
+                Toast.makeText(this, "listener false", Toast.LENGTH_SHORT).show();
             }
         },1500);
+        Toast.makeText(this, "return i", Toast.LENGTH_SHORT).show();
         return i;
     }
 
@@ -152,8 +158,7 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
          i = true;
          return (exitValue == 0);
         }
-        catch (IOException e)          { e.printStackTrace(); }
-        catch (InterruptedException e) { e.printStackTrace(); }
+        catch (IOException | InterruptedException e)          { e.printStackTrace(); }
         return false;
     }
 
