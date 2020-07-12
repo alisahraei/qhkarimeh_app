@@ -5,21 +5,28 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import java.io.IOException;
+import java.util.Objects;
+
 import im.delight.android.webview.AdvancedWebView;
 
-public class MainActivity extends AppCompatActivity //implements AdvancedWebView.Listener
+public class MainActivity extends AppCompatActivity  //implements AdvancedWebView.Listener
          {
     private AdvancedWebView webView;
     LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
     boolean doubleBackToExitPressedOnce = false;
+    boolean i = false;
     //    IUpdateCheckService service;
     //    UpdateServiceConnection connection;
     //    private static final String TAG = "UpdateCheck";
@@ -33,6 +40,7 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         websetting();
         webView.loadUrl(url);
         load();
+
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
@@ -51,7 +59,8 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
         SplashScreenActivity.getInstance().Refresh();
     }
 
-    public void load(){
+
+             public void load(){
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -115,10 +124,36 @@ public class MainActivity extends AppCompatActivity //implements AdvancedWebView
     }
 
     private boolean isNetworkConnected() {
+        boolean i = false;
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        if (cm != null) {
-            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+        NetworkInfo activeNetworkInfo =
+                Objects.requireNonNull(cm).getActiveNetworkInfo();
+        if (activeNetworkInfo!=null && activeNetworkInfo.isConnected()){
+            isOnline();
+        }else {
         }
+
+        new Handler().postDelayed(() -> {
+            CheckInternetUtil.Listener listener = null;
+            if (i){
+                listener.onReceived(true);
+            }else {
+                listener.onReceived(false);
+            }
+        },1500);
+        return i;
+    }
+
+    private boolean isOnline() {
+        Runtime runtime = Runtime.getRuntime();
+        try {
+         Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
+         int     exitValue = ipProcess.waitFor();
+         i = true;
+         return (exitValue == 0);
+        }
+        catch (IOException e)          { e.printStackTrace(); }
+        catch (InterruptedException e) { e.printStackTrace(); }
         return false;
     }
 
