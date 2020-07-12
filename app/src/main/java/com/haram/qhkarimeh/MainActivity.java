@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
     LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
     boolean doubleBackToExitPressedOnce = false;
-    boolean i = false;
     //    IUpdateCheckService service;
     //    UpdateServiceConnection connection;
     //    private static final String TAG = "UpdateCheck";
@@ -45,8 +44,8 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         if (!isNetworkConnected()) {
-            Toast.makeText(this, "if!isnetwork", Toast.LENGTH_SHORT).show();
-            bottomsheet();
+            showBottomSheet();
+
         }
     }
 
@@ -55,20 +54,14 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
         linearLayout = findViewById(R.id.pgData);
     }
 
-    public void bottomsheet () {
-        SplashScreenActivity.getInstance().haveNetwork();
-        SplashScreenActivity.getInstance().Refresh();
-    }
-
-
-             public void load(){
+    public void load(){
         webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-                if (!isNetworkConnected()){
-                    showBottomSheetDialogFragment();
-                }
+//                if (!isNetworkConnected()){
+//                    showBottomSheetDialogFragment();
+//                }
                 return true;
             }
             @Override
@@ -82,6 +75,19 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
         });
     };
 
+    public void showBottomSheet() {
+        BottomSheetFragment bottomSheetDialog = BottomSheetFragment.newInstance();
+        bottomSheetDialog.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
+        BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
+        bottomSheetFragment.setCancelable(false);
+        bottomSheetFragment.setListener(() -> {
+            bottomSheetFragment.dismiss();
+            finish();
+            startActivity(getIntent());
+        });
+        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+
+    }
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
@@ -123,42 +129,11 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
             Toast.makeText(this, R.string.backMsg, Toast.LENGTH_SHORT).show();
         }
     }
-
     private boolean isNetworkConnected() {
-        boolean i = false;
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo =
-                Objects.requireNonNull(cm).getActiveNetworkInfo();
-        if (activeNetworkInfo!=null && activeNetworkInfo.isConnected()){
-            Toast.makeText(this, "if", Toast.LENGTH_SHORT).show();
-            isOnline();
-        }else {
-            Toast.makeText(this, "else", Toast.LENGTH_SHORT).show();
+        if (cm != null) {
+            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
         }
-
-        new Handler().postDelayed(() -> {
-            CheckInternetUtil.Listener listener = null;
-            if (i){
-                listener.onReceived(true);
-                Toast.makeText(this, "listener true", Toast.LENGTH_SHORT).show();
-            }else {
-                listener.onReceived(false);
-                Toast.makeText(this, "listener false", Toast.LENGTH_SHORT).show();
-            }
-        },1500);
-        Toast.makeText(this, "return i", Toast.LENGTH_SHORT).show();
-        return i;
-    }
-
-    private boolean isOnline() {
-        Runtime runtime = Runtime.getRuntime();
-        try {
-         Process ipProcess = runtime.exec("/system/bin/ping -c 1 8.8.8.8");
-         int     exitValue = ipProcess.waitFor();
-         i = true;
-         return (exitValue == 0);
-        }
-        catch (IOException | InterruptedException e)          { e.printStackTrace(); }
         return false;
     }
 
@@ -173,6 +148,8 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
             startActivity(getIntent());
         });
         bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
+        webView.setVisibility(View.GONE);
+        linearLayout.setVisibility(View.VISIBLE);
     }
 //
 //    @Override
