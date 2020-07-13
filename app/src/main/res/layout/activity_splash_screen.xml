@@ -7,15 +7,15 @@
     android:background="#23716d"
     tools:context=".SplashScreenActivity">
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="@dimen/_90sdp"
-        android:layout_height="@dimen/_55sdp"
+        android:layout_width="@dimen/_75sdp"
+        android:layout_height="@dimen/_40sdp"
         app:lottie_autoPlay="true"
         android:alpha="1"
         app:lottie_loop="true"
         app:lottie_fileName="test.json"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/_30sdp"/>
+        android:layout_marginBottom="@dimen/_20sdp"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,16 +25,16 @@
         android:orientation="vertical"
         >
         <ImageView
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_170sdp"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_150sdp"
             android:background="@drawable/logo2"
             android:layout_gravity="center"
             android:id="@+id/logo"
             />
 
         <ImageView
-            android:layout_width="@dimen/_350sdp"
-            android:layout_height="@dimen/_70sdp"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
             android:layout_marginTop="@dimen/_10sdp"
             android:background="@drawable/logotext"
