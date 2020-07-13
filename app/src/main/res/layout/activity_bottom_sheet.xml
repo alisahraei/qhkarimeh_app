@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     tools:context=".BottomSheetActivity"
     android:id="@+id/bottom_sheet"
-    android:paddingTop="50dp"
+    android:paddingTop="@dimen/_50sdp"
     android:orientation="vertical"
     android:background="@drawable/radius"
     android:alpha="1"
@@ -27,13 +27,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginStart="10dp">
+            android:layout_marginStart="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/tv_error"
                 android:layout_width="fill_parent"
-                android:paddingBottom="5dp"
-                android:layout_marginTop="50dp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_50sdp"
                 android:layout_height="wrap_content"
                 android:text="@string/internet"
                 android:textSize="18sp"/>
@@ -52,10 +52,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_30sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
             android:gravity="center"
             android:text="@string/refresh"
             android:textSize="20sp" />
