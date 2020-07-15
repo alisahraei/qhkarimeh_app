@@ -34,14 +34,14 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
     LinearLayout linearLayout;
     String url = "https://qhkarimeh.ir/";
     boolean doubleBackToExitPressedOnce = false;
-    //    IUpdateCheckService service;
-    //    UpdateServiceConnection connection;
-    //    private static final String TAG = "UpdateCheck";
+    IUpdateCheckService service;
+    UpdateServiceConnection connection;
+    private static final String TAG = "UpdateCheck";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        initService();
+        initService();
         setContentView(R.layout.activity_main);
         findID();
         websetting();
