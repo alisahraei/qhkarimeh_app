@@ -23,12 +23,9 @@ import android.widget.Toast;
 
 import com.farsitel.bazaar.IUpdateCheckService;
 
-import java.io.IOException;
-import java.util.Objects;
-
 import im.delight.android.webview.AdvancedWebView;
 
-public class MainActivity extends AppCompatActivity  //implements AdvancedWebView.Listener
+public class MainActivity extends AppCompatActivity  implements AdvancedWebView.Listener
          {
     private AdvancedWebView webView;
     LinearLayout linearLayout;
@@ -51,9 +48,9 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-        if (!isNetworkConnected()) {
+        if (isNetworkConnected()) {
             showBottomSheet();
-
+            Toast.makeText(this, "first 1", Toast.LENGTH_SHORT).show();
         }
     }
 
