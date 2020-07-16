@@ -134,6 +134,24 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
         }
     }
 
+     @Override
+     protected void onResume() {
+         super.onResume();
+         webView.onResume();
+     }
+
+     @Override
+     protected void onPause() {
+         webView.onPause();
+         super.onPause();
+     }
+
+//     @Override
+//     protected void onDestroy() {
+//         webView.onDestroy();
+//         super.onDestroy();
+//     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
