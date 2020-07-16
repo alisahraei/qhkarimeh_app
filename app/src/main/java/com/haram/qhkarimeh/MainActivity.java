@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
         bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
 
     }
+    
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
@@ -159,32 +160,6 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
         webView.setVisibility(View.GONE);
         linearLayout.setVisibility(View.VISIBLE);
     }
-//
-//    @Override
-//    public void onPageStarted(String url, Bitmap favicon) {
-//
-//    }
-//
-//    @Override
-//    public void onPageFinished(String url) {
-//
-//    }
-//
-//    @Override
-//    public void onPageError(int errorCode, String description, String failingUrl) {
-//
-//    }
-//
-//    @Override
-//    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
-//
-//    }
-//
-//    @Override
-//    public void onExternalPageRequest(String url) {
-//
-//    }
-
 
     class UpdateServiceConnection implements ServiceConnection {
         public void onServiceConnected(ComponentName name, IBinder boundService) {
