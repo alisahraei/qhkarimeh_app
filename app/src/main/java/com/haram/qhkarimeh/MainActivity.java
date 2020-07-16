@@ -64,14 +64,15 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-//                if (!isNetworkConnected()){
-//                    showBottomSheetDialogFragment();
-//                }
                 return true;
             }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap facIcon) {
                 linearLayout.setVisibility(View.VISIBLE);
+                if (isNetworkConnected()){
+                    showBottomSheet();
+                    Toast.makeText(MainActivity.this, " second 2", Toast.LENGTH_SHORT).show();
+                }
             }
             @Override
             public void onPageFinished(WebView view, String url) {
