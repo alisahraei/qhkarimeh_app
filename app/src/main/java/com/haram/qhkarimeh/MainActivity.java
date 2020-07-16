@@ -94,9 +94,8 @@ public class MainActivity extends AppCompatActivity  //implements AdvancedWebVie
             startActivity(getIntent());
         });
         bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-
     }
-    
+
     @SuppressLint({"JavascriptInterface", "SetJavaScriptEnabled"})
     public void websetting(){
         WebSettings webSetting = webView.getSettings();
