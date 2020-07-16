@@ -8,9 +8,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.INotificationSideChannel;
 import android.util.Log;
@@ -135,27 +133,47 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
             Toast.makeText(this, R.string.backMsg, Toast.LENGTH_SHORT).show();
         }
     }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         if (cm != null) {
-            return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
+            return cm.getActiveNetworkInfo() == null || !cm.getActiveNetworkInfo().isConnected();
         }
-        return false;
+        return true;
     }
 
-    public void showBottomSheetDialogFragment() {
-        BottomSheetFragment bottomSheetDialog = BottomSheetFragment.newInstance();
-        bottomSheetDialog.show(getSupportFragmentManager(), "Bottom Sheet Dialog Fragment");
-        BottomSheetFragment bottomSheetFragment = new BottomSheetFragment();
-        bottomSheetFragment.setCancelable(false);
-        bottomSheetFragment.setListener(() -> {
-            bottomSheetFragment.dismiss();
-            finish();
-            startActivity(getIntent());
-        });
-        bottomSheetFragment.show(getSupportFragmentManager(), bottomSheetFragment.getTag());
-        webView.setVisibility(View.GONE);
+    @Override
+    public void onPageStarted(String url, Bitmap favicon) {
         linearLayout.setVisibility(View.VISIBLE);
+        if (isNetworkConnected()) {
+            showBottomSheet();
+        }
+    }
+
+    @Override
+    public void onPageFinished(String url) {
+        linearLayout.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onPageError(int errorCode, String description, String failingUrl) {
+        if (description.equals("net::ERR_INTERNET_DISCONNECTED")){
+            showBottomSheet();
+        }
+        if (errorCode == -10 || description.equals("net::ERR_UNKNOWN_URL_SCHEME")){
+            webView.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onDownloadRequested(String url, String suggestedFilename, String mimeType, long contentLength, String contentDisposition, String userAgent) {
+
+    }
+
+    @Override
+    public void onExternalPageRequest(String url) {
+
     }
 
     class UpdateServiceConnection implements ServiceConnection {
