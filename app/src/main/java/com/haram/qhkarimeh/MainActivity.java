@@ -196,8 +196,9 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
 
     class UpdateServiceConnection implements ServiceConnection {
         public void onServiceConnected(ComponentName name, IBinder boundService) {
-            service = (IUpdateCheckService) INotificationSideChannel.Stub
-                    .asInterface((IBinder) boundService);
+//            check with server when is on...
+//            service = (IUpdateCheckService) INotificationSideChannel.Stub
+//                    .asInterface((IBinder) boundService);
             try {
                 long vCode = service.getVersionCode("com.haram.qhkarimeh");
                 Toast.makeText(MainActivity.this, "Version Code:" + vCode,
