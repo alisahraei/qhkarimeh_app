@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
                 linearLayout.setVisibility(View.GONE);
             }
         });
-    };
+    }
 
     public void showBottomSheet() {
         BottomSheetFragment bottomSheetDialog = BottomSheetFragment.newInstance();
