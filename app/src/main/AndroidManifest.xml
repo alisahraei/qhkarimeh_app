@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".BottomSheetActivity"
-            android:theme="@style/themePD"/>
+            android:theme="@style/AppBottomSheetDialogTheme"/>
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/AppTheme.NoActionBar">
