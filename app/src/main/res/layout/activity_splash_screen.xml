@@ -7,8 +7,8 @@
     android:background="#23716d"
     tools:context=".SplashScreenActivity">
     <com.airbnb.lottie.LottieAnimationView
-        android:layout_width="@dimen/_75sdp"
-        android:layout_height="@dimen/_40sdp"
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_35sdp"
         app:lottie_autoPlay="true"
         android:alpha="1"
         app:lottie_loop="true"
