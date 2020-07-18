@@ -177,6 +177,8 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
     public void onPageError(int errorCode, String description, String failingUrl) {
         if (description.equals("net::ERR_INTERNET_DISCONNECTED")){
             showBottomSheet();
+            webView.setVisibility(View.GONE);
+            linearLayout.setVisibility(View.VISIBLE);
         }
         if (errorCode == -10 || description.equals("net::ERR_UNKNOWN_URL_SCHEME")){
             webView.setVisibility(View.GONE);
