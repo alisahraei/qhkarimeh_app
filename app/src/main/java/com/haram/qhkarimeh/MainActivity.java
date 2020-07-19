@@ -134,6 +134,13 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
         }
     }
 
+//     @Override
+//     public void onBackPressed() {
+//         if (!webView.onBackPressed()) { return; }
+//         // ...
+//         super.onBackPressed();
+//     }
+
      @Override
      protected void onResume() {
          super.onResume();
