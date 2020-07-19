@@ -146,11 +146,6 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
          super.onPause();
      }
 
-//     @Override
-//     protected void onDestroy() {
-//         webView.onDestroy();
-//         super.onDestroy();
-//     }
 
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -236,6 +231,7 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
 
     @Override
     protected void onDestroy() {
+        webView.onDestroy();
         super.onDestroy();
         releaseService();
     }
