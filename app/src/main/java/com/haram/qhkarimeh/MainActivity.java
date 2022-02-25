@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity  implements AdvancedWebView.
          {
     private AdvancedWebView webView;
     LinearLayout linearLayout;
-    String url = "https://qhkarimeh.ir/";
+    String url = "https://qhkarimeh.ir/enter";
     boolean doubleBackToExitPressedOnce = false;
     IUpdateCheckService service;
     UpdateServiceConnection connection;
